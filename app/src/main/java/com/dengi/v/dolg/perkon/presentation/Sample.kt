@@ -1,4 +1,4 @@
-package org.zaim.na.kartu.polus.presentation
+package com.dengi.v.dolg.perkon.presentation
 
 import android.os.Build
 import android.widget.Toast
@@ -13,9 +13,9 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.dengi.v.dolg.perkon.domain.model.StatusApplication
 import com.dengi.v.dolg.perkon.domain.model.TypeCard
 import com.dengi.v.dolg.perkon.domain.model.basedto.BaseState
-import com.dengi.v.dolg.perkon.presentation.MainEvent
-import com.dengi.v.dolg.perkon.presentation.MainViewModel
-import org.zaim.na.kartu.polus.presentation.mock.BaseScreen
+import org.zaim.na.kartu.polus.presentation.ConnectScreen
+import org.zaim.na.kartu.polus.presentation.LoadingScreen
+import org.zaim.na.kartu.polus.presentation.OfferScreen
 
 @RequiresApi(Build.VERSION_CODES.TIRAMISU)
 @Composable
@@ -84,7 +84,7 @@ fun Sample(
         }
 
         is StatusApplication.Mock -> {
-            BaseScreen()
+            NoInternetScreen(onEvent = viewModel::onEvent)
         }
 
         is StatusApplication.Info -> {

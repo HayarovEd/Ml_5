@@ -1,4 +1,4 @@
-package org.zaim.na.kartu.polus.presentation
+package com.dengi.v.dolg.perkon.presentation
 
 import android.content.Context
 import android.content.Intent
@@ -44,14 +44,15 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.core.content.FileProvider
-import com.dengi.v.dolg.perkon.presentation.MainEvent
-import org.zaim.na.kartu.polus.R
-import org.zaim.na.kartu.polus.ui.theme.baseBackground
-import org.zaim.na.kartu.polus.ui.theme.white
+import com.dengi.v.dolg.perkon.R
+import com.dengi.v.dolg.perkon.ui.theme.baseBackground
+import com.dengi.v.dolg.perkon.ui.theme.secondText
+import com.dengi.v.dolg.perkon.ui.theme.yellow
 import java.io.File
 import java.io.IOException
 
@@ -69,131 +70,139 @@ fun WebViewScreen(
     val activityResultLauncher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.StartActivityForResult()
     ) { result ->
-        if (result.data!=null) {
-            result.data?.data?.let { uri->
+        if (result.data != null) {
+            result.data?.data?.let { uri ->
                 mFilePathCallback?.onReceiveValue(arrayOf(uri))
             }
         } else {
-            imageOutputFileUri?.let { uri->
+            imageOutputFileUri?.let { uri ->
                 mFilePathCallback?.onReceiveValue(arrayOf(uri))
             }
         }
     }
     val context = LocalContext.current
     val onBackPressedDispatcher = LocalOnBackPressedDispatcherOwner.current?.onBackPressedDispatcher
-    Scaffold (
+    Scaffold(
         modifier = modifier
             .fillMaxSize(),
         topBar = {
             TopAppBar(
                 colors = TopAppBarDefaults.smallTopAppBarColors(
-                    containerColor = baseBackground
+                    containerColor = yellow
                 ),
                 title = {
-                    Row(
+                    Box(
                         modifier = modifier
-                            .fillMaxWidth(),
-                        verticalAlignment = Alignment.CenterVertically
+                            .fillMaxWidth()
+                            .padding(horizontal = 15.dp, vertical = 21.dp)
                     ) {
-                        IconButton(onClick = {
-                            onEvent(MainEvent.Reconnect)
-                        }) {
+                        Text(
+                            modifier = modifier
+                                .fillMaxWidth()
+                                .align(alignment = Alignment.Center),
+                            color = secondText,
+                            fontStyle = FontStyle(R.font.roboto),
+                            fontSize = 18.sp,
+                            fontWeight = FontWeight(500),
+                            text = offerName,
+                            textAlign = TextAlign.Center
+                        )
+                        IconButton(
+                            modifier = modifier
+                                .align(alignment = Alignment.TopStart),
+                            onClick = {
+                                onEvent(MainEvent.Reconnect)
+                            }) {
                             Icon(
-                                imageVector = ImageVector.vectorResource(id = R.drawable.baseline_arrow_back_30),
-                                tint = white,
+                                imageVector = ImageVector.vectorResource(id = R.drawable.baseline_close_22),
+                                tint = secondText,
                                 contentDescription = ""
                             )
                         }
-                        Spacer(modifier = modifier.width(16.dp))
-                        Text(
-                            color = white,
-                            fontStyle = FontStyle(R.font.open_sans),
-                            fontSize = 20.sp,
-                            fontWeight = FontWeight.Normal,
-                            text = offerName
-                        )
                     }
                 }
             )
         },
-    ) {valuePaddings->
-        Box (modifier = modifier
-            .fillMaxSize()
-            .background(color = baseBackground)
-            .padding(valuePaddings),
-        ){
+    ) { valuePaddings ->
+        Box(
+            modifier = modifier
+                .fillMaxSize()
+                .background(color = baseBackground)
+                .padding(valuePaddings),
+        ) {
             AndroidView(
                 modifier = modifier.padding(4.dp),
                 factory = {
-                WebView(it).apply {
-                    layoutParams = ViewGroup.LayoutParams(
-                        ViewGroup.LayoutParams.MATCH_PARENT,
-                        ViewGroup.LayoutParams.MATCH_PARENT
-                    )
-                    webViewClient = WebViewClient()
-                    webChromeClient = object : WebChromeClient() {
+                    WebView(it).apply {
+                        layoutParams = ViewGroup.LayoutParams(
+                            ViewGroup.LayoutParams.MATCH_PARENT,
+                            ViewGroup.LayoutParams.MATCH_PARENT
+                        )
+                        webViewClient = WebViewClient()
+                        webChromeClient = object : WebChromeClient() {
 
-                        override fun onShowFileChooser(
-                            webView: WebView?,
-                            filePathCallback: ValueCallback<Array<Uri>>?,
-                            fileChooserParams: FileChooserParams?
-                        ): Boolean {
+                            override fun onShowFileChooser(
+                                webView: WebView?,
+                                filePathCallback: ValueCallback<Array<Uri>>?,
+                                fileChooserParams: FileChooserParams?
+                            ): Boolean {
 
-                            val acceptTypes = fileChooserParams!!.acceptTypes
-                            val allowMultiple =
-                                fileChooserParams!!.mode === FileChooserParams.MODE_OPEN_MULTIPLE
-                            val captureEnabled = fileChooserParams.isCaptureEnabled
+                                val acceptTypes = fileChooserParams!!.acceptTypes
+                                val allowMultiple =
+                                    fileChooserParams!!.mode === FileChooserParams.MODE_OPEN_MULTIPLE
+                                val captureEnabled = fileChooserParams.isCaptureEnabled
 
-                            return startPickerIntent(
-                                callback = filePathCallback,
-                                acceptTypes =acceptTypes,
-                                allowMultiple = allowMultiple,
-                                activityResultLauncher = activityResultLauncher,
-                                context = context)
+                                return startPickerIntent(
+                                    callback = filePathCallback,
+                                    acceptTypes = acceptTypes,
+                                    allowMultiple = allowMultiple,
+                                    activityResultLauncher = activityResultLauncher,
+                                    context = context
+                                )
+                            }
+
+
                         }
+                        settings.domStorageEnabled = true
+                        settings.javaScriptCanOpenWindowsAutomatically = true
+                        settings.javaScriptEnabled = true
+                        settings.loadWithOverviewMode = true
+                        settings.useWideViewPort = true
+                        settings.domStorageEnabled = true
+                        settings.databaseEnabled = true
+                        settings.setSupportZoom(false)
+                        settings.allowFileAccess = true
+                        settings.allowContentAccess = true
+                        settings.loadWithOverviewMode = true
+                        settings.useWideViewPort = true
 
+                        settings.domStorageEnabled = true
+                        settings.javaScriptCanOpenWindowsAutomatically = true
+                        val cookieManager = CookieManager.getInstance()
+                        cookieManager.setAcceptCookie(true)
+                        settings.javaScriptEnabled = true
+                        settings.loadWithOverviewMode = true
+                        settings.useWideViewPort = true
+                        settings.domStorageEnabled = true
+                        settings.databaseEnabled = true
+                        settings.setSupportZoom(false)
+                        settings.allowFileAccess = true
+                        settings.allowContentAccess = true
+                        settings.loadWithOverviewMode = true
+                        settings.useWideViewPort = true
 
-                    }
-                    settings.domStorageEnabled = true
-                    settings.javaScriptCanOpenWindowsAutomatically = true
-                    settings.javaScriptEnabled = true
-                    settings.loadWithOverviewMode = true
-                    settings.useWideViewPort = true
-                    settings.domStorageEnabled = true
-                    settings.databaseEnabled = true
-                    settings.setSupportZoom(false)
-                    settings.allowFileAccess = true
-                    settings.allowContentAccess = true
-                    settings.loadWithOverviewMode = true
-                    settings.useWideViewPort = true
-
-                    settings.domStorageEnabled = true
-                    settings.javaScriptCanOpenWindowsAutomatically = true
-                    val cookieManager = CookieManager.getInstance()
-                    cookieManager.setAcceptCookie(true)
-                    settings.javaScriptEnabled = true
-                    settings.loadWithOverviewMode = true
-                    settings.useWideViewPort = true
-                    settings.domStorageEnabled = true
-                    settings.databaseEnabled = true
-                    settings.setSupportZoom(false)
-                    settings.allowFileAccess = true
-                    settings.allowContentAccess = true
-                    settings.loadWithOverviewMode = true
-                    settings.useWideViewPort = true
-
-                    onBackPressedDispatcher?.addCallback {
-                        if (this@apply.canGoBack()) {
-                            this@apply.goBack()
-                        } else {
-                            onEvent(MainEvent.Reconnect)
+                        onBackPressedDispatcher?.addCallback {
+                            if (this@apply.canGoBack()) {
+                                this@apply.goBack()
+                            } else {
+                                onEvent(MainEvent.Reconnect)
+                            }
                         }
+                        loadUrl(url)
                     }
-                    loadUrl(url)
-                }
-            }, update = {
-                it.loadUrl(url)
-            })
+                }, update = {
+                    it.loadUrl(url)
+                })
         }
     }
 }
@@ -204,13 +213,14 @@ fun startPickerIntent(
     allowMultiple: Boolean?,
     activityResultLauncher: ManagedActivityResultLauncher<Intent, ActivityResult>,
     context: Context
-): Boolean{
+): Boolean {
     mFilePathCallback = callback;
     val extraIntents = ArrayList<Parcelable>()
     extraIntents.add(
         getPhotoIntent(
             //activityResultLauncher = activityResultLauncher,
-            context = context)
+            context = context
+        )
     )
     val fileSelectionIntent = getFileChooserIntent(acceptTypes, allowMultiple)
     val pickerIntent = Intent(Intent.ACTION_CHOOSER)
@@ -228,7 +238,8 @@ private fun getPhotoIntent(
     imageOutputFileUri = getOutputUri(
         intentType = MediaStore.ACTION_IMAGE_CAPTURE,
         //activityResultLauncher = activityResultLauncher,
-        context = context)
+        context = context
+    )
     intent.putExtra(MediaStore.EXTRA_OUTPUT, imageOutputFileUri)
     return intent
 }

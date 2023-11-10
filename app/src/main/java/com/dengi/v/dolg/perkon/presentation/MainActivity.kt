@@ -23,7 +23,6 @@ import com.dengi.v.dolg.perkon.data.APPS_FLYER
 import com.dengi.v.dolg.perkon.data.LINK
 import com.dengi.v.dolg.perkon.data.SHARED_APPSFLYER_INSTANCE_ID
 import com.dengi.v.dolg.perkon.data.SHARED_DATA
-import org.zaim.na.kartu.polus.presentation.Sample
 
 
 @AndroidEntryPoint

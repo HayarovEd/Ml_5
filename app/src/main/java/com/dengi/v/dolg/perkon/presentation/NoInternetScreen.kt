@@ -1,4 +1,4 @@
-package org.zaim.na.kartu.polus.presentation
+package com.dengi.v.dolg.perkon.presentation
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -29,14 +29,12 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.dengi.v.dolg.perkon.presentation.MainEvent
-import org.zaim.na.kartu.polus.R
+import com.dengi.v.dolg.perkon.R
 import com.dengi.v.dolg.perkon.presentation.MainEvent.Reconnect
-import org.zaim.na.kartu.polus.ui.theme.baseBackground
-import org.zaim.na.kartu.polus.ui.theme.darkText
-import org.zaim.na.kartu.polus.ui.theme.grey
-import org.zaim.na.kartu.polus.ui.theme.white
-import org.zaim.na.kartu.polus.ui.theme.yellow
+import com.dengi.v.dolg.perkon.ui.theme.baseBackground
+import com.dengi.v.dolg.perkon.ui.theme.baseText
+import com.dengi.v.dolg.perkon.ui.theme.secondText
+import com.dengi.v.dolg.perkon.ui.theme.yellow
 
 @Composable
 fun NoInternetScreen(
@@ -47,33 +45,33 @@ fun NoInternetScreen(
         modifier = modifier
             .fillMaxSize()
             .background(color = baseBackground)
-            .padding(25.dp)
+            .padding(vertical = 36.dp, horizontal = 15.dp)
     ) {
         Column (
             modifier = modifier.align(alignment = Alignment.Center),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Image(
-                modifier = modifier.size(200.dp),
+                modifier = modifier.size(100.dp),
                 painter = painterResource(
                 id = R.drawable.no_connect),
                 contentDescription = "")
-            Spacer(modifier = modifier.height(23.dp))
+            Spacer(modifier = modifier.height(45.dp))
             Text(
                 text = stringResource(id = R.string.not_connect),
-                fontSize = 18.sp,
+                fontSize = 35.sp,
                 fontWeight = FontWeight(700),
-                fontStyle = FontStyle(R.font.open_sans),
-                color = white,
+                fontStyle = FontStyle(R.font.roboto),
+                color = baseText,
                 textAlign = TextAlign.Center
             )
-            Spacer(modifier = modifier.height(24.dp))
+            Spacer(modifier = modifier.height(54.dp))
             Text(
                 text = stringResource(id = R.string.try_internet),
                 fontSize = 16.sp,
-                fontWeight = FontWeight(400),
-                fontStyle = FontStyle(R.font.open_sans),
-                color = grey,
+                fontWeight = FontWeight(500),
+                fontStyle = FontStyle(R.font.roboto),
+                color = baseText,
                 textAlign = TextAlign.Center
             )
         }
@@ -83,22 +81,20 @@ fun NoInternetScreen(
                 .align(alignment = Alignment.BottomCenter),
             shape = RoundedCornerShape(10.dp),
             contentPadding = PaddingValues(
-                vertical = 7.dp
+                vertical = 23.dp
             ),
             colors = ButtonDefaults.buttonColors(
                 containerColor = yellow,
-                contentColor = darkText,
-                disabledContainerColor = grey,
-                disabledContentColor = white
+                contentColor = secondText,
             ),
             onClick = { onEvent(Reconnect) }
         ) {
             Text(
                 text = stringResource(id = R.string.reconnect),
                 style = TextStyle(
-                    fontSize = 18.sp,
-                    fontFamily = FontFamily(Font(R.font.open_sans)),
-                    fontWeight = FontWeight(600),
+                    fontSize = 16.sp,
+                    fontFamily = FontFamily(Font(R.font.roboto)),
+                    fontWeight = FontWeight(700),
                 )
             )
         }
