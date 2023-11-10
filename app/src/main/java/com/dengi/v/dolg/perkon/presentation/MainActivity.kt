@@ -23,6 +23,7 @@ import com.dengi.v.dolg.perkon.data.APPS_FLYER
 import com.dengi.v.dolg.perkon.data.LINK
 import com.dengi.v.dolg.perkon.data.SHARED_APPSFLYER_INSTANCE_ID
 import com.dengi.v.dolg.perkon.data.SHARED_DATA
+import com.dengi.v.dolg.perkon.ui.theme.Ml_5Theme
 
 
 @AndroidEntryPoint
@@ -97,11 +98,14 @@ class MainActivity : ComponentActivity() {
 
         AppsFlyerLib.getInstance().init(APPS_FLYER, conversionDataListener, this)
         AppsFlyerLib.getInstance().start(this)
-        setContent {
 
-           Sample(
-                viewModel = viewModel,
-            )
+        setContent {
+            Ml_5Theme {
+                Sample(
+                    viewModel = viewModel,
+                )
+            }
+
         }
     }
 
