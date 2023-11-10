@@ -26,12 +26,12 @@ android {
     signingConfigs {
         getByName("debug") {
             storeFile = file("ID522.keystore")
-            keyAlias = "com.dengi.v.dolg.perkon"
+            keyAlias = "mypass"
             storePassword = "com.dengi.v.dolg.perkon"
             keyPassword = "com.dengi.v.dolg.perkon"
         }
         create("release") {
-            keyAlias = "com.dengi.v.dolg.perkon"
+            keyAlias = "mypass"
             keyPassword = "com.dengi.v.dolg.perkon"
             storeFile = file("ID522.keystore")
             storePassword = "com.dengi.v.dolg.perkon"
