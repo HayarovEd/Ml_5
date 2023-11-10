@@ -23,21 +23,21 @@ android {
         }
     }
 
-    /*signingConfigs {
+    signingConfigs {
         getByName("debug") {
-            storeFile = file("id_441.keystore")
-            keyAlias = "hed.hotzaem.tophh"
+            storeFile = file("ID522.keystore")
+            keyAlias = "com.dengi.v.dolg.perkon"
             storePassword = "mypass"
             keyPassword = "mypass"
         }
         create("release") {
-            keyAlias = "hed.hotzaem.tophh"
+            keyAlias = "com.dengi.v.dolg.perkon"
             keyPassword = "mypass"
-            storeFile = file("id_441.keystore")
+            storeFile = file("ID522.keystore")
             storePassword = "mypass"
             enableV2Signing = true
         }
-    }*/
+    }
 
     buildTypes {
         release {
@@ -49,7 +49,7 @@ android {
             //signingConfig = signingConfigs.getByName("release")
         }
         debug {
-            // signingConfig = signingConfigs.getByName("debug")
+            //signingConfig = signingConfigs.getByName("debug")
         }
     }
 
