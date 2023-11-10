@@ -99,6 +99,9 @@ dependencies {
 
     coreLibraryDesugaring ("com.android.tools:desugar_jdk_libs:2.0.4")
 
+    //UserX
+    implementation(files("libs\\UserX-4.2.2.aar"))
+
     //Dagger
     implementation ("com.google.dagger:hilt-android:2.48")
     annotationProcessor ("com.google.dagger:hilt-compiler:2.47")

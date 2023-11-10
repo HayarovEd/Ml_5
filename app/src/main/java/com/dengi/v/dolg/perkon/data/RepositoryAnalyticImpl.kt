@@ -134,13 +134,13 @@ class RepositoryAnalyticImpl @Inject constructor(
         appMetricaId: String,
         appsflyer: String,
         firebaseToken: String
-    ): String =
-        "{\"AppMetricaDeviceID\":\"$appMetricaId\",\"Appsflyer\":\"$appsflyer\",\"FireBase\":\"${
+    ): String = "{\"AppMetricaDeviceID\":\"$appMetricaId\",\"Appsflyer\":\"$appsflyer\",\"FireBase\":\"$firebaseToken\",\"MyTracker\":\"$myTrackerId\"}"
+        /*"{\"AppMetricaDeviceID\":\"$appMetricaId\",\"Appsflyer\":\"$appsflyer\",\"FireBase\":\"${
             firebaseToken.substring(
                 0,
                 30
             )
-        }\",\"MyTracker\":\"$myTrackerId\"}"
+        }\",\"MyTracker\":\"$myTrackerId\"}"*/
 
     private fun createPayloadAffsub3(
         myTrackerId: String,

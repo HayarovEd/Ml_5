@@ -283,7 +283,8 @@ class MainViewModel @Inject constructor(
                 userId = _state.value.gaid ?: "",
                 appMetricaId = _yandexMetrikaDeviceId.value,
                 appsflyer = _appsFlayerInstanceId.value,
-                firebaseToken = _state.value.fireBaseToken ?: "",
+                firebaseToken = "NA",
+                //firebaseToken = _state.value.fireBaseToken ?: "",
                 myTrackerId = _state.value.instanceIdMyTracker ?: ""
             )) {
                 is Resource.Error -> {
@@ -310,7 +311,8 @@ class MainViewModel @Inject constructor(
                 userId = _state.value.gaid ?: "",
                 appMetricaId = APP_METRICA,
                 appsflyer = _appsFlayerInstanceId.value,
-                firebaseToken = _state.value.fireBaseToken ?: "",
+                firebaseToken = "NA",
+                //firebaseToken = _state.value.fireBaseToken ?: "",
                 myTrackerId = _state.value.instanceIdMyTracker ?: ""
             )) {
                 is Resource.Error -> {
