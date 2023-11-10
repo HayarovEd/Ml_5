@@ -1,5 +1,5 @@
 
-package org.zaim.na.kartu.polus.presentation
+package com.dengi.v.dolg.perkon.presentation
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -21,18 +21,15 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
-import org.zaim.na.kartu.polus.R
+import com.dengi.v.dolg.perkon.R
 import com.dengi.v.dolg.perkon.data.VALUE_ONE
 import com.dengi.v.dolg.perkon.domain.model.ElementOffer
 import com.dengi.v.dolg.perkon.domain.model.StatusApplication
 import com.dengi.v.dolg.perkon.domain.model.basedto.BaseState
 import com.dengi.v.dolg.perkon.domain.model.basedto.Credit
-import com.dengi.v.dolg.perkon.presentation.MainEvent
-import com.dengi.v.dolg.perkon.presentation.RowCard
-import com.dengi.v.dolg.perkon.presentation.RowData
-import org.zaim.na.kartu.polus.ui.theme.baseBackground
-import org.zaim.na.kartu.polus.ui.theme.grey
-import org.zaim.na.kartu.polus.ui.theme.white
+import com.dengi.v.dolg.perkon.ui.theme.baseBackground
+import com.dengi.v.dolg.perkon.ui.theme.grey
+import com.dengi.v.dolg.perkon.ui.theme.secondText
 
 @Composable
 fun ItemCredit(
@@ -44,11 +41,10 @@ fun ItemCredit(
     Column(
         modifier = modifier
             .fillMaxWidth()
-            .border(width = 3.dp, color = grey, shape = RoundedCornerShape(15.dp))
-            .padding(end = 4.dp, bottom = 4.dp)
-            .clip(shape = RoundedCornerShape(16.dp))
+            .border(width = 2.dp, color = grey, shape = RoundedCornerShape(10.dp))
+            .clip(shape = RoundedCornerShape(10.dp))
             .background(color = baseBackground)
-            .padding(15.dp)
+            .padding(16.dp)
     ) {
         AsyncImage(
             modifier = modifier
@@ -87,10 +83,10 @@ fun ItemCredit(
         )
         Spacer(modifier = modifier.height(13.dp))
         Text(
-            color = white,
-            fontStyle = FontStyle(R.font.open_sans),
-            fontSize = 19.sp,
-            fontWeight = FontWeight(700),
+            color = secondText,
+            fontStyle = FontStyle(R.font.roboto),
+            fontSize = 20.sp,
+            fontWeight = FontWeight(600),
             text = credit.name
         )
         /*Row(

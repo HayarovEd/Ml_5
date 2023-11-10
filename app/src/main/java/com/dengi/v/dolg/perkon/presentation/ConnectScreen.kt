@@ -1,13 +1,14 @@
-package org.zaim.na.kartu.polus.presentation
+package com.dengi.v.dolg.perkon.presentation
 
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.material3.BottomAppBar
+import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -25,9 +26,10 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import org.zaim.na.kartu.polus.R
+import com.dengi.v.dolg.perkon.R
 import com.dengi.v.dolg.perkon.domain.model.basedto.BaseDto
 import com.dengi.v.dolg.perkon.domain.model.basedto.BaseState
 import com.dengi.v.dolg.perkon.domain.model.basedto.BaseState.Cards
@@ -35,11 +37,9 @@ import com.dengi.v.dolg.perkon.domain.model.basedto.BaseState.Credits
 import com.dengi.v.dolg.perkon.domain.model.basedto.CardsCredit
 import com.dengi.v.dolg.perkon.domain.model.basedto.CardsDebit
 import com.dengi.v.dolg.perkon.domain.model.basedto.CardsInstallment
-import com.dengi.v.dolg.perkon.presentation.MainEvent
-import org.zaim.na.kartu.polus.ui.theme.baseBackground
-import org.zaim.na.kartu.polus.ui.theme.grey
-import org.zaim.na.kartu.polus.ui.theme.white
-import org.zaim.na.kartu.polus.ui.theme.yellow
+import com.dengi.v.dolg.perkon.ui.theme.baseBackground
+import com.dengi.v.dolg.perkon.ui.theme.baseText
+import com.dengi.v.dolg.perkon.ui.theme.yellow
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -76,16 +76,19 @@ fun ConnectScreen(
                     Row(
                         modifier = modifier
                             .fillMaxWidth()
-                            .padding(horizontal = 24.dp),
-                        horizontalArrangement = Arrangement.SpaceBetween,
-                        verticalAlignment = Alignment.CenterVertically
+                            .padding(horizontal = 20.dp),
+                        //horizontalArrangement = Arrangement.SpaceBetween,
+                        //verticalAlignment = Alignment.CenterVertically
                     ) {
                         Text(
-                            color = white,
-                            fontStyle = FontStyle(R.font.open_sans),
-                            fontSize = 22.sp,
-                            fontWeight = FontWeight(600),
-                            text = title
+                            modifier = modifier
+                                .fillMaxWidth(),
+                            color = baseText,
+                            fontStyle = FontStyle(R.font.roboto),
+                            fontSize = 18.sp,
+                            fontWeight = FontWeight(500),
+                            text = title,
+                            textAlign = TextAlign.Center
                         )
                         /*IconButton(onClick = onClickRules) {
                             Icon(
@@ -96,13 +99,13 @@ fun ConnectScreen(
                     }
                 },
                 colors = TopAppBarDefaults.smallTopAppBarColors(
-                    containerColor = baseBackground
+                    containerColor = yellow
                 )
             )
         },
         bottomBar = {
             BottomAppBar(
-                containerColor = baseBackground
+                containerColor = baseText
             ) {
                 Row(
                     modifier = modifier
@@ -111,25 +114,28 @@ fun ConnectScreen(
                 ) {
                     if (!db.loans.isNullOrEmpty()) {
                         ItemBottomBar(
-                            color = if (baseState is BaseState.Loans) yellow else grey,
+                            color = if (baseState is BaseState.Loans) yellow else baseBackground,
                             content = stringResource(id = R.string.loans),
-                            icon = ImageVector.vectorResource(id = R.drawable.cashback),
+                            icon = ImageVector.vectorResource(id = R.drawable.loans),
+                            isCheked = baseState is BaseState.Loans,
                             onClick = onClickLoans
                         )
                     }
                     if (!db.cards.isNullOrEmpty()) {
                         ItemBottomBar(
-                            color = if (baseState is Cards) yellow else grey,
+                            color = if (baseState is Cards) yellow else baseBackground,
                             content = stringResource(id = R.string.cards),
-                            icon = ImageVector.vectorResource(id = R.drawable.card),
+                            icon = ImageVector.vectorResource(id = R.drawable.cards),
+                            isCheked = baseState is Cards,
                             onClick = onClickCards
                         )
                     }
                     if (!db.credits.isNullOrEmpty()) {
                         ItemBottomBar(
-                            color = if (baseState is Credits) yellow else grey,
+                            color = if (baseState is Credits) yellow else baseBackground,
                             content = stringResource(id = R.string.credits),
-                            icon = ImageVector.vectorResource(id = R.drawable.credit),
+                            icon = ImageVector.vectorResource(id = R.drawable.credits),
+                            isCheked = baseState is Credits,
                             onClick = onClickCredits
                         )
                     }
@@ -179,27 +185,37 @@ fun ConnectScreen(
 
 @Composable
 fun ItemBottomBar(
+    modifier: Modifier = Modifier,
     color: Color,
     icon: ImageVector,
+    isCheked: Boolean,
     content: String,
     onClick: () -> Unit
 ) {
-    Column(
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
+    Box {
         IconButton(
+            modifier = modifier.align(alignment = Alignment.Center),
             colors = IconButtonDefaults.iconButtonColors(
                 contentColor = color
             ),
             onClick = onClick) {
             Icon(imageVector = icon, contentDescription = "")
         }
-        Text(
+        if (isCheked) {
+            Divider(
+                modifier = modifier
+                    .fillMaxWidth()
+                    .align(alignment = Alignment.BottomCenter),
+                thickness = 4.dp,
+                color = color
+            )
+        }
+        /*Text(
             color = color,
             fontStyle = FontStyle(R.font.open_sans),
             fontSize = 15.sp,
             fontWeight = FontWeight(600),
             text = content
-        )
+        )*/
     }
 }

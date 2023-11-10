@@ -1,5 +1,5 @@
 
-package org.zaim.na.kartu.polus.presentation
+package com.dengi.v.dolg.perkon.presentation
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.background
@@ -17,8 +17,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.dengi.v.dolg.perkon.domain.model.basedto.BaseState
 import com.dengi.v.dolg.perkon.domain.model.basedto.Loan
-import com.dengi.v.dolg.perkon.presentation.MainEvent
-import org.zaim.na.kartu.polus.ui.theme.baseBackground
+import com.dengi.v.dolg.perkon.ui.theme.baseBackground
 
 @SuppressLint("CoroutineCreationDuringComposition")
 @Composable
@@ -39,7 +38,7 @@ fun Loans(
         LazyColumn(
             modifier = modifier
                 .fillMaxWidth()
-                .padding(horizontal = 24.dp),
+                .padding(horizontal = 17.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp),
             state = loanLazyState
         ) {

@@ -13,7 +13,6 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.dengi.v.dolg.perkon.domain.model.StatusApplication
 import com.dengi.v.dolg.perkon.domain.model.TypeCard
 import com.dengi.v.dolg.perkon.domain.model.basedto.BaseState
-import org.zaim.na.kartu.polus.presentation.ConnectScreen
 
 @RequiresApi(Build.VERSION_CODES.TIRAMISU)
 @Composable

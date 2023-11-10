@@ -1,5 +1,5 @@
 
-package org.zaim.na.kartu.polus.presentation
+package com.dengi.v.dolg.perkon.presentation
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -16,8 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.dengi.v.dolg.perkon.domain.model.basedto.BaseState
 import com.dengi.v.dolg.perkon.domain.model.basedto.Credit
-import com.dengi.v.dolg.perkon.presentation.MainEvent
-import org.zaim.na.kartu.polus.ui.theme.baseBackground
+import com.dengi.v.dolg.perkon.ui.theme.baseBackground
 
 @Composable
 fun Credits(
@@ -37,7 +36,7 @@ fun Credits(
         LazyColumn(
             modifier = modifier
                 .fillMaxWidth()
-                .padding(horizontal = 24.dp),
+                .padding(horizontal = 17.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp),
             state = creditLazyState
         ) {

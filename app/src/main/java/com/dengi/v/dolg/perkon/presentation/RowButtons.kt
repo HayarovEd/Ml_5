@@ -1,5 +1,5 @@
 
-package org.zaim.na.kartu.polus.presentation
+package com.dengi.v.dolg.perkon.presentation
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -25,14 +25,14 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import org.zaim.na.kartu.polus.R
+import com.dengi.v.dolg.perkon.R
 import com.dengi.v.dolg.perkon.domain.model.ElementOffer
 import com.dengi.v.dolg.perkon.domain.model.StatusApplication
 import com.dengi.v.dolg.perkon.domain.model.basedto.BaseState
-import com.dengi.v.dolg.perkon.presentation.MainEvent
-import org.zaim.na.kartu.polus.ui.theme.baseBackground
-import org.zaim.na.kartu.polus.ui.theme.darkText
-import org.zaim.na.kartu.polus.ui.theme.yellow
+import com.dengi.v.dolg.perkon.ui.theme.baseBackground
+import com.dengi.v.dolg.perkon.ui.theme.grey
+import com.dengi.v.dolg.perkon.ui.theme.secondText
+import com.dengi.v.dolg.perkon.ui.theme.yellow
 
 @Composable
 fun RowButtons(
@@ -65,7 +65,7 @@ fun RowButtons(
         Box(
             modifier = modifier
                 .weight(1f)
-                .border(width = 3.dp, color = yellow, shape = RoundedCornerShape(10.dp))
+                .border(width = 2.dp, color = grey, shape = RoundedCornerShape(10.dp))
                 .clip(shape = RoundedCornerShape(10.dp))
                 .background(color = baseBackground)
                 .clickable(onClick = {
@@ -123,8 +123,8 @@ fun RowButtons(
         ) {
             Text(
                 modifier = modifier.align(alignment = Alignment.Center),
-                color = darkText,
-                fontStyle = FontStyle(R.font.open_sans),
+                color = secondText,
+                fontStyle = FontStyle(R.font.roboto),
                 fontSize = 20.sp,
                 fontWeight = FontWeight(600),
                 text = titleOffer,

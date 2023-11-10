@@ -1,5 +1,5 @@
 
-package org.zaim.na.kartu.polus.presentation
+package com.dengi.v.dolg.perkon.presentation
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -26,16 +26,16 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import org.zaim.na.kartu.polus.R
+import com.dengi.v.dolg.perkon.R
 import com.dengi.v.dolg.perkon.domain.model.TypeCard
 import com.dengi.v.dolg.perkon.domain.model.basedto.BaseState
 import com.dengi.v.dolg.perkon.domain.model.basedto.CardsCredit
 import com.dengi.v.dolg.perkon.domain.model.basedto.CardsDebit
 import com.dengi.v.dolg.perkon.domain.model.basedto.CardsInstallment
-import com.dengi.v.dolg.perkon.presentation.MainEvent
-import org.zaim.na.kartu.polus.ui.theme.baseBackground
-import org.zaim.na.kartu.polus.ui.theme.white
-import org.zaim.na.kartu.polus.ui.theme.yellow
+import com.dengi.v.dolg.perkon.ui.theme.baseBackground
+import com.dengi.v.dolg.perkon.ui.theme.baseText
+import com.dengi.v.dolg.perkon.ui.theme.lightYellow
+import com.dengi.v.dolg.perkon.ui.theme.secondText
 
 @Composable
 fun CardsScreen(
@@ -60,7 +60,7 @@ fun CardsScreen(
         Row(
             modifier = modifier
                 .fillMaxWidth()
-                .padding(horizontal = 24.dp),
+                .background(color = lightYellow),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
@@ -69,15 +69,15 @@ fun CardsScreen(
                     modifier = modifier.weight(1f),
                     onClick = { onEvent(MainEvent.OnChangeTypeCard(TypeCard.CardCredit)) },
                     colors = ButtonDefaults.buttonColors(
-                        containerColor = if (typeCard is TypeCard.CardCredit) yellow else baseBackground
+                        containerColor = lightYellow//if (typeCard is TypeCard.CardCredit) yellow else baseBackground
                     ),
                     contentPadding = PaddingValues(horizontal = 15.dp, vertical = 5.dp)
                 ) {
                     Text(
-                        color = if (typeCard is TypeCard.CardCredit) baseBackground else white,
-                        fontStyle = FontStyle(R.font.open_sans),
-                        fontSize = 13.sp,
-                        fontWeight = FontWeight(600),
+                        color = if (typeCard is TypeCard.CardCredit) baseText else secondText,
+                        fontStyle = FontStyle(R.font.roboto),
+                        fontSize = 14.sp,
+                        fontWeight = if (typeCard is TypeCard.CardCredit) FontWeight(600) else FontWeight(400),
                         text = stringResource(id = R.string.credit),
                         textAlign = TextAlign.Center
                     )
@@ -88,15 +88,15 @@ fun CardsScreen(
                     modifier = modifier.weight(1f),
                     onClick = { onEvent(MainEvent.OnChangeTypeCard(TypeCard.CardDebit)) },
                     colors = ButtonDefaults.buttonColors(
-                        containerColor = if (typeCard is TypeCard.CardDebit) yellow else baseBackground
+                        containerColor = lightYellow//if (typeCard is TypeCard.CardDebit) yellow else baseBackground
                     ),
                     contentPadding = PaddingValues(horizontal = 15.dp, vertical = 5.dp)
                 ) {
                     Text(
-                        color = if (typeCard is TypeCard.CardDebit) baseBackground else white,
-                        fontStyle = FontStyle(R.font.open_sans),
-                        fontSize = 13.sp,
-                        fontWeight = FontWeight(600),
+                        color = if (typeCard is TypeCard.CardDebit) baseText else secondText,
+                        fontStyle = FontStyle(R.font.roboto),
+                        fontSize = 14.sp,
+                        fontWeight = if (typeCard is TypeCard.CardDebit) FontWeight(600) else FontWeight(400),
                         text = stringResource(id = R.string.debit),
                         textAlign = TextAlign.Center
                     )
@@ -107,15 +107,15 @@ fun CardsScreen(
                     modifier = modifier.weight(1f),
                     onClick = { onEvent(MainEvent.OnChangeTypeCard(TypeCard.CardInstallment)) },
                     colors = ButtonDefaults.buttonColors(
-                        containerColor = if (typeCard is TypeCard.CardInstallment) yellow else baseBackground
+                        containerColor = lightYellow//if (typeCard is TypeCard.CardInstallment) yellow else baseBackground
                     ),
                     contentPadding = PaddingValues(horizontal = 15.dp, vertical = 5.dp)
                 ) {
                     Text(
-                        color = if (typeCard is TypeCard.CardInstallment) baseBackground else white,
-                        fontStyle = FontStyle(R.font.open_sans),
-                        fontSize = 13.sp,
-                        fontWeight = FontWeight(600),
+                        color = if (typeCard is TypeCard.CardInstallment) baseText else secondText,
+                        fontStyle = FontStyle(R.font.roboto),
+                        fontSize = 14.sp,
+                        fontWeight = if (typeCard is TypeCard.CardInstallment) FontWeight(600) else FontWeight(400),
                         text = stringResource(id = R.string.installment),
                         textAlign = TextAlign.Center
                     )
@@ -128,7 +128,7 @@ fun CardsScreen(
                 LazyColumn(
                     modifier = modifier
                         .fillMaxWidth()
-                        .padding(horizontal = 24.dp),
+                        .padding(horizontal = 17.dp),
                     verticalArrangement = Arrangement.spacedBy(16.dp),
                     state = creditCardloanLazyState
                 ) {
@@ -146,7 +146,7 @@ fun CardsScreen(
                 LazyColumn(
                     modifier = modifier
                         .fillMaxWidth()
-                        .padding(horizontal = 24.dp),
+                        .padding(horizontal = 17.dp),
                     verticalArrangement = Arrangement.spacedBy(16.dp),
                     state = debitCardLazyState
                 ) {
@@ -164,7 +164,7 @@ fun CardsScreen(
                 LazyColumn(
                     modifier = modifier
                         .fillMaxWidth()
-                        .padding(horizontal = 24.dp),
+                        .padding(horizontal = 17.dp),
                     verticalArrangement = Arrangement.spacedBy(16.dp),
                     state = instalmentCardLazyState
                 ) {
