@@ -1,4 +1,4 @@
-package org.zaim.na.kartu.polus.presentation
+package com.dengi.v.dolg.perkon.presentation
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -16,9 +16,9 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import org.zaim.na.kartu.polus.R
-import org.zaim.na.kartu.polus.ui.theme.baseBackground
-import org.zaim.na.kartu.polus.ui.theme.white
+import com.dengi.v.dolg.perkon.R
+import com.dengi.v.dolg.perkon.ui.theme.baseBackground
+import com.dengi.v.dolg.perkon.ui.theme.secondText
 
 @Composable
 fun RowData(
@@ -35,18 +35,18 @@ fun RowData(
         verticalAlignment = Alignment.CenterVertically
     ) {
         Text(
-            color = white,
-            fontStyle = FontStyle(R.font.open_sans),
+            color = secondText,
+            fontStyle = FontStyle(R.font.roboto),
             fontSize = 16.sp,
             fontWeight = FontWeight(400),
             text = title,
             textAlign = TextAlign.Start
         )
         Text(
-            color = white,
-            fontStyle = FontStyle(R.font.open_sans),
+            color = secondText,
+            fontStyle = FontStyle(R.font.roboto),
             fontSize = 16.sp,
-            fontWeight = FontWeight(600),
+            fontWeight = FontWeight(500),
             text = content,
             textAlign = TextAlign.End
         )

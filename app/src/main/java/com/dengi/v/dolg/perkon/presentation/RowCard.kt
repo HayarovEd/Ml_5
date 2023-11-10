@@ -1,4 +1,4 @@
-package org.zaim.na.kartu.polus.presentation
+package com.dengi.v.dolg.perkon.presentation
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
@@ -9,7 +9,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.vectorResource
-import org.zaim.na.kartu.polus.R
+import com.dengi.v.dolg.perkon.R
 import com.dengi.v.dolg.perkon.data.VALUE_ONE
 
 @Composable

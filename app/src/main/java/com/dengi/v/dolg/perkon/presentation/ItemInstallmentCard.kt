@@ -28,6 +28,8 @@ import com.dengi.v.dolg.perkon.domain.model.StatusApplication
 import com.dengi.v.dolg.perkon.domain.model.basedto.BaseState
 import com.dengi.v.dolg.perkon.domain.model.basedto.CardsInstallment
 import com.dengi.v.dolg.perkon.presentation.MainEvent
+import com.dengi.v.dolg.perkon.presentation.RowCard
+import com.dengi.v.dolg.perkon.presentation.RowData
 import org.zaim.na.kartu.polus.ui.theme.baseBackground
 import org.zaim.na.kartu.polus.ui.theme.grey
 import org.zaim.na.kartu.polus.ui.theme.white

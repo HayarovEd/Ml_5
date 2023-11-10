@@ -7,6 +7,7 @@
     <string name="reconnect">Переподключиться</string>
 
     //Other
+    <string name="checkout">Оформить</string>
     <string name="loans">Займы</string>
     <string name="cards">Карты</string>
     <string name="credits">Кредиты</string>

@@ -1,17 +1,16 @@
-package org.zaim.na.kartu.polus.presentation
+package com.dengi.v.dolg.perkon.presentation
 
 import android.annotation.SuppressLint
 import android.widget.TextView
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
@@ -37,22 +36,19 @@ import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.core.text.HtmlCompat
 import coil.compose.AsyncImage
-import org.zaim.na.kartu.polus.R
+import com.dengi.v.dolg.perkon.R
 import com.dengi.v.dolg.perkon.data.VALUE_ONE
 import com.dengi.v.dolg.perkon.domain.model.ElementOffer
-import com.dengi.v.dolg.perkon.domain.model.StatusApplication
 import com.dengi.v.dolg.perkon.domain.model.basedto.BaseState
-import com.dengi.v.dolg.perkon.presentation.MainEvent
-import org.zaim.na.kartu.polus.ui.theme.baseBackground
-import org.zaim.na.kartu.polus.ui.theme.darkText
-import org.zaim.na.kartu.polus.ui.theme.grey
-import org.zaim.na.kartu.polus.ui.theme.white
-import org.zaim.na.kartu.polus.ui.theme.yellow
+import com.dengi.v.dolg.perkon.ui.theme.baseBackground
+import com.dengi.v.dolg.perkon.ui.theme.secondText
+import com.dengi.v.dolg.perkon.ui.theme.yellow
 
 @SuppressLint("ResourceAsColor")
 @OptIn(ExperimentalMaterial3Api::class)
@@ -69,35 +65,37 @@ fun OfferScreen(
         topBar = {
             TopAppBar(
                 colors = TopAppBarDefaults.smallTopAppBarColors(
-                    containerColor = baseBackground
+                    containerColor = yellow
                 ),
                 title = {
-                    Row(
+                    Box(
                         modifier = modifier
-                            .fillMaxWidth(),
-                        verticalAlignment = Alignment.CenterVertically
+                            .fillMaxWidth()
+                            .padding(horizontal = 15.dp, vertical = 21.dp)
                     ) {
-                        IconButton(onClick = {
-                            onEvent(
-                                MainEvent.OnChangeStatusApplication(
-                                    StatusApplication.Connect(baseState)
-                                )
-                            )
-                        }) {
+                        Text(
+                            modifier = modifier
+                                .fillMaxWidth()
+                                .align(alignment = Alignment.Center),
+                            color = secondText,
+                            fontStyle = FontStyle(R.font.roboto),
+                            fontSize = 18.sp,
+                            fontWeight = FontWeight(500),
+                            text = elementOffer.name,
+                            textAlign = TextAlign.Center
+                        )
+                        IconButton(
+                            modifier = modifier
+                                .align(alignment = Alignment.TopStart),
+                            onClick = {
+                                onEvent(MainEvent.Reconnect)
+                            }) {
                             Icon(
-                                imageVector = ImageVector.vectorResource(id = R.drawable.baseline_arrow_back_30),
-                                tint = white,
+                                imageVector = ImageVector.vectorResource(id = R.drawable.baseline_close_22),
+                                tint = secondText,
                                 contentDescription = ""
                             )
                         }
-                        Spacer(modifier = modifier.width(16.dp))
-                        Text(
-                            color = white,
-                            fontStyle = FontStyle(R.font.open_sans),
-                            fontSize = 22.sp,
-                            fontWeight = FontWeight(600),
-                            text = elementOffer.name
-                        )
                     }
                 }
             )
@@ -109,16 +107,14 @@ fun OfferScreen(
                 Button(
                     modifier = modifier
                         .fillMaxWidth()
-                        .padding(horizontal = 24.dp),
+                        .padding(horizontal = 17.dp),
                     shape = RoundedCornerShape(10.dp),
                     contentPadding = PaddingValues(
-                        vertical = 7.dp
+                        vertical = 23.dp
                     ),
                     colors = ButtonDefaults.buttonColors(
                         containerColor = yellow,
-                        contentColor = darkText,
-                        disabledContainerColor = grey,
-                        disabledContentColor = white
+                        contentColor = secondText,
                     ),
                     onClick = {
                         onEvent(
@@ -132,9 +128,9 @@ fun OfferScreen(
                     Text(
                         text = stringResource(id = R.string.checkout),
                         style = TextStyle(
-                            fontSize = 18.sp,
-                            fontFamily = FontFamily(Font(R.font.open_sans)),
-                            fontWeight = FontWeight(600),
+                            fontSize = 20.sp,
+                            fontFamily = FontFamily(Font(R.font.roboto)),
+                            fontWeight = FontWeight(700),
                         )
                     )
                 }
@@ -146,7 +142,7 @@ fun OfferScreen(
                 .padding(paddingValues)
                 .fillMaxSize()
                 .background(color = baseBackground)
-                .padding(horizontal = 24.dp)
+                .padding(horizontal = 17.dp)
                 .verticalScroll(rememberScrollState()),
         ) {
             AsyncImage(
@@ -156,7 +152,18 @@ fun OfferScreen(
                 contentScale = ContentScale.FillWidth,
                 contentDescription = ""
             )
-            Spacer(modifier = modifier.height(32.dp))
+            Spacer(modifier = modifier.height(30.dp))
+            AndroidView(
+                factory = { context -> TextView(context) },
+                update = {
+                    it.setTextColor(R.color.white)
+                    it.text = HtmlCompat.fromHtml(
+                        elementOffer.description,
+                        HtmlCompat.FROM_HTML_MODE_COMPACT
+                    )
+                }
+            )
+            Spacer(modifier = modifier.height(25.dp))
             RowData(
                 title = stringResource(id = R.string.amount),
                 content = elementOffer.amount
@@ -183,18 +190,6 @@ fun OfferScreen(
                 showMir = elementOffer.showMir,
                 showQivi = elementOffer.showQiwi,
                 showCache = elementOffer.showCache
-            )
-            Spacer(modifier = modifier.height(24.dp))
-
-            AndroidView(
-                factory = { context -> TextView(context) },
-                update = {
-                    it.setTextColor(R.color.white)
-                    it.text = HtmlCompat.fromHtml(
-                        elementOffer.description,
-                        HtmlCompat.FROM_HTML_MODE_COMPACT
-                    )
-                }
             )
         }
     }
