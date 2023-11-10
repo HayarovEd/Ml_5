@@ -94,7 +94,7 @@ fun WebViewScreen(
                     Box(
                         modifier = modifier
                             .fillMaxWidth()
-                            .padding(horizontal = 15.dp, vertical = 21.dp)
+                            .padding(vertical = 21.dp)
                     ) {
                         Text(
                             modifier = modifier
@@ -114,7 +114,7 @@ fun WebViewScreen(
                                 onEvent(MainEvent.Reconnect)
                             }) {
                             Icon(
-                                imageVector = ImageVector.vectorResource(id = R.drawable.baseline_close_22),
+                                imageVector = ImageVector.vectorResource(id = R.drawable.baseline_arrow_back_24),
                                 tint = secondText,
                                 contentDescription = ""
                             )

@@ -71,7 +71,7 @@ fun OfferScreen(
                     Box(
                         modifier = modifier
                             .fillMaxWidth()
-                            .padding(horizontal = 15.dp, vertical = 21.dp)
+                            .padding(vertical = 21.dp)
                     ) {
                         Text(
                             modifier = modifier
@@ -91,7 +91,7 @@ fun OfferScreen(
                                 onEvent(MainEvent.Reconnect)
                             }) {
                             Icon(
-                                imageVector = ImageVector.vectorResource(id = R.drawable.baseline_close_22),
+                                imageVector = ImageVector.vectorResource(id = R.drawable.baseline_arrow_back_24),
                                 tint = secondText,
                                 contentDescription = ""
                             )
@@ -142,7 +142,7 @@ fun OfferScreen(
                 .padding(paddingValues)
                 .fillMaxSize()
                 .background(color = baseBackground)
-                .padding(horizontal = 17.dp)
+                .padding(17.dp)
                 .verticalScroll(rememberScrollState()),
         ) {
             AsyncImage(
