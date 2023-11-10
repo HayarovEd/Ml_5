@@ -23,7 +23,7 @@ android {
         }
     }
 
-    signingConfigs {
+    /*signingConfigs {
         getByName("debug") {
             storeFile = file("ID522.keystore")
             keyAlias = "com.dengi.v.dolg.perkon"
@@ -37,7 +37,7 @@ android {
             storePassword = "mypass"
             enableV2Signing = true
         }
-    }
+    }*/
 
     buildTypes {
         release {

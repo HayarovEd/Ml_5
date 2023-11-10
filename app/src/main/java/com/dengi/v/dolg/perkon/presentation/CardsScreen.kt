@@ -128,7 +128,7 @@ fun CardsScreen(
                 LazyColumn(
                     modifier = modifier
                         .fillMaxWidth()
-                        .padding(horizontal = 17.dp),
+                        .padding(17.dp),
                     verticalArrangement = Arrangement.spacedBy(16.dp),
                     state = creditCardloanLazyState
                 ) {
@@ -146,7 +146,7 @@ fun CardsScreen(
                 LazyColumn(
                     modifier = modifier
                         .fillMaxWidth()
-                        .padding(horizontal = 17.dp),
+                        .padding(17.dp),
                     verticalArrangement = Arrangement.spacedBy(16.dp),
                     state = debitCardLazyState
                 ) {
@@ -164,7 +164,7 @@ fun CardsScreen(
                 LazyColumn(
                     modifier = modifier
                         .fillMaxWidth()
-                        .padding(horizontal = 17.dp),
+                        .padding(17.dp),
                     verticalArrangement = Arrangement.spacedBy(16.dp),
                     state = instalmentCardLazyState
                 ) {
