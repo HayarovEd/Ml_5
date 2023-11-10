@@ -23,21 +23,21 @@ android {
         }
     }
 
-    /*signingConfigs {
+    signingConfigs {
         getByName("debug") {
             storeFile = file("ID522.keystore")
             keyAlias = "com.dengi.v.dolg.perkon"
-            storePassword = "mypass"
-            keyPassword = "mypass"
+            storePassword = "com.dengi.v.dolg.perkon"
+            keyPassword = "com.dengi.v.dolg.perkon"
         }
         create("release") {
             keyAlias = "com.dengi.v.dolg.perkon"
-            keyPassword = "mypass"
+            keyPassword = "com.dengi.v.dolg.perkon"
             storeFile = file("ID522.keystore")
-            storePassword = "mypass"
+            storePassword = "com.dengi.v.dolg.perkon"
             enableV2Signing = true
         }
-    }*/
+    }
 
     buildTypes {
         release {
@@ -46,10 +46,10 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
-            //signingConfig = signingConfigs.getByName("release")
+            signingConfig = signingConfigs.getByName("release")
         }
         debug {
-            //signingConfig = signingConfigs.getByName("debug")
+            signingConfig = signingConfigs.getByName("debug")
         }
     }
 
