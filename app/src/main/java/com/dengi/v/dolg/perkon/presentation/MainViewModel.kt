@@ -158,6 +158,7 @@ class MainViewModel @Inject constructor(
     }
 
     fun onEvent(mainEvent: MainEvent) {
+        Log.d("GHJKL", "last ${_lastState.value}")
         when (mainEvent) {
             Reconnect -> {
                 if (service.checkedInternetConnection()) {
@@ -278,13 +279,14 @@ class MainViewModel @Inject constructor(
             delay(2000)
             Log.d("ASDFGH", "_yandexMetrikaDeviceId sub1 ${_yandexMetrikaDeviceId.value}")
             Log.d("ASDFGH", "_appsFlayerInstanceId sub1 ${_appsFlayerInstanceId.value}")
+            Log.d("ASDFGH", "gaid ${_state.value.gaid}")
+            Log.d("ASDFGH", "instanceIdMyTracker ${_state.value.instanceIdMyTracker}")
             when (val result = repositoryAnalytic.getSub1(
                 applicationToken = APY_KEY,
                 userId = _state.value.gaid ?: "",
                 appMetricaId = _yandexMetrikaDeviceId.value,
                 appsflyer = _appsFlayerInstanceId.value,
                 firebaseToken = "NA",
-                //firebaseToken = _state.value.fireBaseToken ?: "",
                 myTrackerId = _state.value.instanceIdMyTracker ?: ""
             )) {
                 is Resource.Error -> {
@@ -294,6 +296,7 @@ class MainViewModel @Inject constructor(
                         .updateStateUI()
                 }
                 is Resource.Success -> {
+                    Log.d("FGHJJ", "result sub1 ${result.data}")
                     _state.value.copy(
                         affsub1Unswer = result.data?.affsub1?:""
                     )
@@ -311,8 +314,7 @@ class MainViewModel @Inject constructor(
                 userId = _state.value.gaid ?: "",
                 appMetricaId = APP_METRICA,
                 appsflyer = _appsFlayerInstanceId.value,
-                firebaseToken = "NA",
-                //firebaseToken = _state.value.fireBaseToken ?: "",
+                firebaseToken = _state.value.fireBaseToken ?: "",
                 myTrackerId = _state.value.instanceIdMyTracker ?: ""
             )) {
                 is Resource.Error -> {

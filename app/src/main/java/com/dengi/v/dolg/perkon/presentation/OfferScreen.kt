@@ -45,6 +45,7 @@ import coil.compose.AsyncImage
 import com.dengi.v.dolg.perkon.R
 import com.dengi.v.dolg.perkon.data.VALUE_ONE
 import com.dengi.v.dolg.perkon.domain.model.ElementOffer
+import com.dengi.v.dolg.perkon.domain.model.StatusApplication
 import com.dengi.v.dolg.perkon.domain.model.basedto.BaseState
 import com.dengi.v.dolg.perkon.ui.theme.baseBackground
 import com.dengi.v.dolg.perkon.ui.theme.secondText
@@ -88,7 +89,11 @@ fun OfferScreen(
                             modifier = modifier
                                 .align(alignment = Alignment.TopStart),
                             onClick = {
-                                onEvent(MainEvent.Reconnect)
+                                onEvent(
+                                    MainEvent.OnChangeStatusApplication(
+                                        StatusApplication.Connect(baseState)
+                                    )
+                                )
                             }) {
                             Icon(
                                 imageVector = ImageVector.vectorResource(id = R.drawable.baseline_arrow_back_24),
